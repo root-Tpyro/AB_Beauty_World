@@ -1,0 +1,351 @@
+<style>
+  .my-search-box {
+    position: relative;
+    width: 100%;
+    max-width: 550px;
+    margin-bottom: 55px;
+
+  }
+
+  .my-search-input {
+    width: 100%;
+    height: 53px !important;
+    padding: 0 60px 0 12px;
+    /* chừa khoảng bên phải cho nút */
+    border: 1px solid #000;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+  }
+
+
+
+  .my-search-box .my-search-input {
+    width: 100%;
+    height: 45px;
+    /* padding: 0 60px 0 12px; */
+    /* chừa khoảng bên phải cho nút */
+    border: 1px solid #000;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  .my-search-box .my-search-btn i {
+    font-size: 10px;
+    /* chỉnh icon nhỏ lại */
+  }
+
+  .my-search-box .my-search-btn {
+    position: absolute;
+
+    right: 4px;
+
+    top: 50%;
+    /* đặt giữa container theo trục dọc */
+    transform: translateY(-50%);
+    /* kéo icon lên đúng giữa */
+    height: 45px;
+    width: 60px;
+    background: #000;
+    border: 1px solid #000;
+
+    /* bo góc phải cho đẹp */
+    color: #fff !important;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ----------------------------------------------------------- */
+  .mid-header {
+    background-color: #080808;
+    /* nền đen phủ full */
+    width: 100%;
+    height: 150px;
+    border: 2px solid red;
+  }
+
+  .mid-header-container {
+    max-width: 1400px;
+    /* giữ nội dung gọn trong khung */
+    margin: 0 auto;
+    /* căn giữa */
+    padding: 0 20px;
+    width: 100%;
+  }
+
+  .mid-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .header-search {
+    flex: 1;
+    /* để ô tìm kiếm chiếm hết không gian trống */
+  }
+
+  /* ---- */
+  /* Mini cart container */
+  .mini-cart {
+    position: relative;
+    display: inline-block;
+  }
+
+  .mini-cart .icon {
+    font-size: 20px;
+    margin-right: 5px;
+  }
+
+  /* Dropdown content */
+  .content-mini-cart {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 300px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 1000;
+  }
+
+  /* Hiện khi hover */
+  .mini-cart:hover .content-mini-cart {
+    display: block;
+  }
+
+  /* List style */
+  .mini-cart ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .mini-cart ul li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .mini-cart ul li:last-child {
+    border-bottom: none;
+  }
+
+  /* Image */
+  .mini-cart .image img {
+    max-width: 60px;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+  }
+
+  /* Info */
+  .mini-cart .info {
+    flex: 1;
+  }
+
+  .mini-cart .info h3 {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .mini-cart .info p {
+    margin: 2px 0 0;
+    font-size: 13px;
+    color: #555;
+  }
+
+  /* Remove icon */
+  .mini-cart .remove a {
+    color: red;
+    font-size: 16px;
+    text-decoration: none;
+  }
+
+  /* Thanh toán button */
+  .mini-cart .button {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    padding: 8px 0;
+    background: #F8E21C;
+    color: #000;
+    font-weight: bold;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+
+  .mini-cart .button:hover {
+    background: #e6d21a;
+  }
+
+  /* --- */
+  .account-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-menu-account {
+    display: none;
+    position: absolute;
+    top: 100%;
+    /* nằm ngay bên dưới dòng Xin chào */
+    left: 200px;
+    /* canh lề trái */
+    background-color: #F8E21C;
+    min-width: 160px;
+    border-radius: 8px;
+    padding: 10px 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  /*  */
+  .dropdown-menu-account li {
+    padding: 8px 16px;
+    white-space: nowrap;
+  }
+
+  .dropdown-menu-account li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-menu-account li:hover {
+    background-color: #F8E21C;
+  }
+
+  .account-dropdown:hover .dropdown-menu-account {
+    display: block;
+  }
+
+  .mid-header .row {
+    display: flex;
+    align-items: center;
+    /* căn giữa theo chiều dọc */
+  }
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    /* căn giữa ngang logo trong cột */
+    align-items: center;
+    /* căn giữa dọc logo trong cột */
+    height: 140px;
+    /* chiều cao bằng header */
+  }
+
+  .logo img {
+    max-height: 100px;
+    /* giữ giới hạn chiều cao */
+    width: auto;
+    margin: 0px 0px 0px -200px;
+  }
+
+
+  /*
+  /* Input */
+  .custom-search-box .custom-input {
+    width: 100%;
+    padding: 10px 50px 10px 14px;
+    height: 53px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  .custom-search-box .custom-input::placeholder {
+    color: #9a9a9a;
+    font-style: italic;
+  }
+
+  /* Button */
+  .custom-search-box {
+    position: relative;
+    /* bắt buộc để nút bám vào trong khung */
+    display: inline-block;
+    width: 100%;
+    /* hoặc width theo thiết kế */
+    max-width: 500px;
+  }
+
+
+
+
+  .custom-search-box .custom-btn {
+    position: absolute;
+    /* right: 115px; */
+
+    transform: translateY(-50%);
+    height: 44px;
+    width: 70px;
+    border-radius: 6px;
+    background: #000;
+    border: 1px solid #fff;
+    color: #fff t;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    */
+  }
+
+  .custom-search-box .custom-btn i {
+    font-size: 16px;
+    color: #fff !important;
+  }
+
+  /* ---------- */
+  /* Header chính */
+
+  /* Smart search */
+  .smart-search {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    display: none;
+    max-height: 350px;
+    overflow-y: auto;
+  }
+
+  .smart-search img {
+    width: 70px;
+    margin-right: 5px;
+  }
+
+  .smart-search ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .smart-search ul li {
+    background: white;
+    border-bottom: 1px solid #ddd;
+  }
+
+  /* Menu dưới */
+  .bottom-header .main-nav li a {
+    color: #000 !important;
+    font-weight: 500;
+  }
+
+  .bottom-header .main-nav li a:hover {
+    color: #333 !important;
+  }
+</style>

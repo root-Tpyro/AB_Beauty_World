@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat thử real-time</title>
+  <style>
+    #chatbox {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 300px;
+      max-height: 400px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      font-family: sans-serif;
+    }
+
+    #messages {
+      flex: 1;
+      padding: 10px;
+      margin: 0;
+      list-style: none;
+      overflow-y: auto;
+      border-bottom: 1px solid #eee;
+    }
+
+    #messages li {
+      margin-bottom: 8px;
+      padding: 6px 10px;
+      background: #f1f1f1;
+      border-radius: 4px;
+      word-wrap: break-word;
+    }
+
+    #input-area {
+      display: flex;
+      border-top: 1px solid #eee;
+    }
+
+    #m {
+      flex: 1;
+      border: none;
+      padding: 10px;
+      font-size: 14px;
+      border-radius: 0 0 0 8px;
+      outline: none;
+    }
+
+    #sendBtn {
+      border: none;
+      background: #4CAF50;
+      color: white;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 0 0 8px 0;
+    }
+
+    #sendBtn:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div id="chatbox">
+    <ul id="messages"></ul>
+    <div id="input-area">
+      <input id="m" autocomplete="off" placeholder="Nhập tin nhắn..." />
+      <button id="sendBtn">Gửi</button>
+    </div>
+  </div>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  const socket = io();
+  const messages = document.getElementById('messages');
+  const input = document.getElementById('m');
+  const sendBtn = document.getElementById('sendBtn');
+
+  socket.on('chat message', function(msg) {
+    const li = document.createElement("li");
+    li.textContent = msg;
+    messages.appendChild(li);
+    messages.scrollTop = messages.scrollHeight;
+  });
+
+  function send() {
+    const msg = input.value.trim();
+    if (msg !== "") {
+      socket.emit('chat message', msg);
+      input.value = '';
+    }
+  }
+
+  sendBtn.addEventListener('click', send);
+  input.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') send();
+  });
+</script>
+
+</body>
+</html>
